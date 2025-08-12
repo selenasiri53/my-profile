@@ -1,4 +1,4 @@
-import { ArrowRight, Link } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import Image from 'next/image'
 import { AnimatedHeadline } from '../AnimatedHeadline'
@@ -6,8 +6,8 @@ import headshot from '../../../public/selena_headshot.jpg'
 
 const Hero = () => {
   return (
-    <div>
-      <div className="relative h-[90vh] my-4 rounded-4xl bg-indigo-50 overflow-hidden lg:mx-32">
+    <div className="my-8 lg:my-20">
+      <div className="m-2 relative lg:h-[74vh] my-4 rounded-4xl bg-indigo-50 overflow-hidden lg:mx-32">
       
       {/* Clip path dent */}
       <div className="absolute bottom-0 left-0 h-20 w-36 bg-white z-10 rounded-tl-4xl rounded-br-4xl" />
@@ -21,19 +21,19 @@ const Hero = () => {
       </div>
 
       {/* Grid content */}
-      <div className="grid grid-cols-2 items-center h-full">
-        <div className="m-3">
+      <div className="justify-center lg:justify-start lg:py-4 lg:grid lg:grid-cols-2 items-center h-full">
+        <div className="m-4">
           <AnimatedHeadline />
         </div>
 
         {/* Headshot Image */}
-        <div className="m-3 flex justify-end">
+        <div className="mx-4 flex justify-end">
           <Image
             src={headshot}
             width={550}
             height={600}
             alt="Selena Siri Headshot Img"
-            className="rounded-3xl rounded-b-3xl object-cover"
+            className="rounded-3xl rounded-b-3xl object-cover lg:max-h-[746px]"
             quality={100}
             priority
           />

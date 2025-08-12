@@ -14,7 +14,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="w-full pt-4 px-6 flex justify-end">
+    <header className="w-full pt-4 px-6 flex justify-center">
       <nav className="flex gap-8 items-center text-sm font-thin text-gray-400">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
