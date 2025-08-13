@@ -27,6 +27,7 @@ type Card = {
   title: string;
   category: string;
   content: React.ReactNode;
+  link?: string;
 };
 
 export const CarouselContext = createContext<{
@@ -242,7 +243,20 @@ export const Card = ({
         onClick={handleOpen}
         className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
       >
+{/* Lavender Gradient Overlay */}
+<div
+  className="absolute inset-x-0 top-0 h-80"
+  style={{
+    background:
+      "linear-gradient(180deg, rgba(230, 230, 250, 1) 0%, rgba(230, 230, 250, 1) 50%, rgba(230, 230, 250, 0) 100%)",
+    pointerEvents: "none",
+    zIndex: 20,
+  }}
+/>
+
+        {/* Existing gradient overlay for fading to transparent */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
@@ -257,12 +271,15 @@ export const Card = ({
             {card.title}
           </motion.p>
         </div>
-        <BlurImage
+        <div style={{ filter: "blur(0px)" }}>
+          <Image
           src={card.src}
           alt={card.title}
           fill
           className="absolute inset-0 z-10 object-cover"
         />
+        </div>
+        
       </motion.button>
     </>
   );
@@ -276,22 +293,15 @@ export const BlurImage = ({
   alt,
   ...rest
 }: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
   return (
-    <img
-      className={cn(
-        "h-full w-full transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
-        className,
-      )}
-      onLoad={() => setLoading(false)}
+    <Image
       src={src as string}
+      alt={alt ? alt : "Background of a beautiful view"}
       width={width}
       height={height}
+      className={className}
       loading="lazy"
       decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
       {...rest}
     />
   );
