@@ -11,8 +11,8 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-600 dark:text-neutral-200 font-sans">
+    <div className="w-full h-full py-20 bg-black">
+      <h2 className="max-w-7xl pl-4 mx-auto text-3xl md:text-5xl font-bold text-rose-300 dark:text-neutral-200 font-sans">
         Projects
       </h2>
       <Carousel items={cards} />
@@ -60,18 +60,21 @@ const data = [
     title: "",
     src: "/projectThumbnails/thurgood-mobile.png",
     content: <DummyContent />,
+    link: "https://thurgood.work",
   },
   {
     category: "Next.js, TypeScript, Prisma, PostgreSQL",
     title: "HealthTech Onboarding Platform",
     src: "/projectThumbnails/zealthy.png",
     content: <DummyContent />,
+    link: "https://zealthy-selena-siris-projects.vercel.app",
   },
   {
     category: "Next.js, TypeScript, Tailwind",
     title: "Modern Landing Page for The Clonard Bar, BK",
     src: "/projectThumbnails/clonard.png",
     content: <DummyContent />,
+    link: "https://www.theclonardbar.com"
   },
 
   // {

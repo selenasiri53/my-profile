@@ -188,7 +188,9 @@ export const Card = ({
   useOutsideClick(containerRef, () => handleClose());
 
   const handleOpen = () => {
-    setOpen(true);
+    if (!card.link) {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -196,10 +198,28 @@ export const Card = ({
     onCardClose(index);
   };
 
+  const CardContent = (
+    <motion.div
+      layoutId={layout ? `card-${card.title}` : undefined}
+      className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
+    >
+      <div style={{ filter: "blur(0px)" }}>
+        <BlurImage
+          src={card.src}
+          alt={card.title}
+          fill
+          className="absolute inset-0 z-10 object-cover 
+                     md:grayscale md:hover:grayscale-0 
+                     transition duration-500 ease-in-out"
+        />
+      </div>
+    </motion.div>
+  );
+
   return (
     <>
       <AnimatePresence>
-        {open && (
+        {open && !card.link && (
           <div className="fixed inset-0 z-50 h-screen overflow-auto">
             <motion.div
               initial={{ opacity: 0 }}
@@ -238,61 +258,23 @@ export const Card = ({
           </div>
         )}
       </AnimatePresence>
-      <motion.button
-        layoutId={layout ? `card-${card.title}` : undefined}
-        onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
-      >
-{/* Lavender Gradient Overlay */}
-{/* <div
-  className="absolute inset-x-0 top-0 h-80"
-  style={{
-    background:
-      "linear-gradient(180deg, rgba(230, 230, 250, 1) 0%, rgba(230, 230, 250, 1) 50%, rgba(230, 230, 250, 0) 100%)",
-    pointerEvents: "none",
-    zIndex: 20,
-  }}
-/> */}
 
-        {/* Existing gradient overlay for fading to transparent */}
-        {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/80 via-transparent to-transparent" /> */}
-
-        <div className="relative z-40 p-8">
-          {/* <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
-          >
-            {card.category}
-          </motion.p> */}
-          {/* <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
-          >
-            {card.title}
-          </motion.p> */}
-        </div>
-        <div style={{ filter: "blur(0px)" }}>
-  <BlurImage
-    src={card.src}
-    alt={card.title}
-    fill
-    className="absolute inset-0 z-10 object-cover 
-               md:grayscale md:hover:grayscale-0 
-               transition duration-500 ease-in-out"
-  />
-</div>
-
-          {/* <BlurImage
-          src={card.src}
-          alt={card.title}
-          fill
-          className="absolute inset-0 z-10 object-cover"
-        /> */}
-        
-      </motion.button>
+      {card.link ? (
+        <a
+          href={card.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
+        >
+          {CardContent}
+        </a>
+      ) : (
+        <motion.button onClick={handleOpen}>{CardContent}</motion.button>
+      )}
     </>
   );
 };
+
 
 export const BlurImage = ({
   height,
