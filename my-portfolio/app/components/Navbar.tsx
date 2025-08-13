@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/story", label: "Story" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "#Home", label: "Home" },
+  { href: "#Story", label: "Story" },
+  { href: "#Projects", label: "Projects" },
+  { href: "#Contact", label: "Contact" },
 ];
 
 const Navbar = () => {
