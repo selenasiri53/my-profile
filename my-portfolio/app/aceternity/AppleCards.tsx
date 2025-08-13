@@ -52,17 +52,19 @@ const DummyContent = () => {
   );
 };
 
+// Next.js, TypeScript, Framer Motion
+// Thurgood Enterprise App for Workers
 const data = [
   {
-    category: "Next.js, TypeScript, Framer Motion",
-    title: "Thurgood Enterprise App for Workers",
+    category: "",
+    title: "",
     src: "/projectThumbnails/thurgood-mobile.png",
     content: <DummyContent />,
   },
   {
     category: "Next.js, TypeScript, Prisma, PostgreSQL",
     title: "HealthTech Onboarding Platform",
-    src: "/projectThumbnails/custom-onboarding-1.png",
+    src: "/projectThumbnails/zealthy.png",
     content: <DummyContent />,
   },
   {
